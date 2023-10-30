@@ -1,4 +1,4 @@
-.navbar .navbar-brand
+/* .navbar .navbar-brand
 {
     color: #E50914;
     font-weight: bold;
@@ -6,5 +6,16 @@
 
 .navbar-nav .nav-item .nav-link
 {
+    color: #E50914;
+} */
+
+/* Styling for the navigation bar brand (logo) */
+.navbar .navbar-brand {
+    color: #E50914;
+    font-weight: bold;
+}
+
+/* Styling for navigation links in the navigation bar */
+.navbar-nav .nav-item .nav-link {
     color: #E50914;
 }

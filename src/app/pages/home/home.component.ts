@@ -9,21 +9,25 @@ import { MovieDetails } from "../../movies.interface";
 })
 export class HomeComponent {
 
-   banners: MovieDetails[]=[]
-   trendingMovies:MovieDetails[]=[]
-   adventureMovies:MovieDetails[]=[]
+  
+  trendingMovies:MovieDetails[]=[]
+  adventureMovies:MovieDetails[]=[]
    animationMovies:MovieDetails[]=[]
    scienceFictions:MovieDetails[]=[]
    comedyMovies: MovieDetails[]=[]
    documentaryMovies:MovieDetails[]=[]
    thrillerMovies:MovieDetails[]=[]
    actionMovies:MovieDetails[]=[]
-  
 
-  constructor(private service:MovieApiServiceService){}
+   list:MovieDetails[][]=[]
+
+    category:string[]=['Trending','Action','Adventure','Animation','Science Fiction','Comedy','Documentary','Thriller']
+   
+
+   constructor(private service:MovieApiServiceService){}
 
   ngOnInit():void{
-    this.bannerData()
+   
     this.trendingMoviesData()
     this.actionMoviesList()
     this.adventureMoviesList()
@@ -32,21 +36,17 @@ export class HomeComponent {
     this.comedyMoviesList()
     this.docMoviesList()
     this.thrillerMoviesList()
+  
   }
 
 
-  bannerData():void{
-    this.service.bannerApiData().subscribe(result=>{
-      // console.log(result,"Banner")
-      if(result.results)
-      this.banners=result.results
-    })
-  }
+  
   trendingMoviesData():void{
     this.service.trendingMoviesData().subscribe(result=>{
       // console.log(result,"TRENDING")
       if(result.results)
       this.trendingMovies=result.results
+      this.list.push(this.trendingMovies)
     })
   }
 
@@ -54,6 +54,8 @@ export class HomeComponent {
     this.service.actionMoviesData().subscribe(res=>{
       if(res.results)
       this.actionMovies=res.results
+      this.list.push(this.actionMovies)
+      // this.type='Action'
     })
   }
 
@@ -61,6 +63,8 @@ export class HomeComponent {
     this.service.adventureMoviesData().subscribe(res=>{
       if(res.results)
       this.adventureMovies=res.results
+      this.list.push(this.adventureMovies)
+      // this.type='Adventure'
     })
   }
 
@@ -68,12 +72,16 @@ export class HomeComponent {
     this.service.animationMoviesData().subscribe(res=>{
       if(res.results)
       this.animationMovies=res.results
+      this.list.push(this.animationMovies)
+      // this.type='Animation'
     })
   }
   scienceFictionList():void{
     this.service.scienceFictionMoviesData().subscribe(res=>{
       if(res.results)
       this.scienceFictions=res.results
+      this.list.push(this.scienceFictions)
+      // this.type='Science Fiction'
     })
   }
 
@@ -81,6 +89,8 @@ export class HomeComponent {
     this.service.comedyMoviesData().subscribe(res=>{
       if(res.results)
       this.comedyMovies=res.results
+      this.list.push(this.comedyMovies)
+      // this.type='Comedy'
     })
   }
 
@@ -88,6 +98,7 @@ export class HomeComponent {
     this.service.documentaryMoviesData().subscribe(res=>{
       if(res.results)
       this.documentaryMovies=res.results
+      this.list.push(this.documentaryMovies)
     })
 
   }
@@ -95,6 +106,8 @@ export class HomeComponent {
     this.service.thrillerMoviesData().subscribe(res=>{
       if(res.results)
       this.thrillerMovies=res.results
+      this.list.push(this.thrillerMovies)
+      // this.type='Thriller'
     })
   }
 

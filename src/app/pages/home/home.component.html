@@ -1,41 +1,29 @@
-<div class="contain-fluid">
-  <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active" data-bs-interval="10000" *ngFor="let b of banners;let i=index"
-        [ngClass]="{active:i===1}">
-        <img src="https://image.tmdb.org/t/p/original/{{ b.backdrop_path }}" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h2>{{b.original_title}}</h2>
-          <p>{{b.overview}}</p>
-        </div>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</div>
+
+<app-banners ></app-banners>
 
 
-<div class="row">
-  <h5 class="text-white">Trending Movies</h5>
-  <div class="rowposter mt-3 p-2">
-    <ng-container *ngFor="let t of trendingMovies">
-      <img src="https://image.tmdb.org/t/p/original/{{ t.poster_path }}" class="rowimg largeposter" alt="..."
-        [routerLink]="['/movie',t.id]">
-    </ng-container>
+  
+<ng-container *ngFor="let l of list; let i = index">
+  <app-movies [title]="category[i]" [movies]="l"></app-movies>
+</ng-container>
 
-  </div>
-
-</div>
+ 
 
 
-<div class="row mt-4">
+
+  <!-- <app-movies [title]="type" [movies]="trendingMovies"></app-movies> -->
+
+  <!-- <app-movies [title]="type" [movies]="actionMovies"></app-movies>
+  <app-movies [title]="type" [movies]="thrillerMovies"></app-movies>
+  <app-movies [title]="type" [movies]="comedyMovies"></app-movies>
+  <app-movies [title]="type" [movies]="adventureMovies"></app-movies>
+  <app-movies [title]="type" [movies]="animationMovies"></app-movies>
+  <app-movies [title]="type" [movies]="scienceFictions"></app-movies>
+  <app-movies [title]="type" [movies]="documentaryMovies"></app-movies> -->
+
+
+
+<!-- <div class="row mt-4">
   <h5 class="text-white">Action Movies</h5>
   <div class="rowposter mt-3 p-2">
     <ng-container *ngFor="let a of actionMovies">
@@ -83,7 +71,7 @@
 
 </div>
 
-  <!-- comedy movies  -->
+
   <div class="row mt-4">
     <h5 class="text-white">Comedy Movies</h5>
     <div class="rowposter mt-3 p-2">
@@ -96,7 +84,6 @@
 
   </div>
 
-   <!-- documentary movies  -->
    <div class="row mt-4">
     <h5 class="text-white">Documentary Movies</h5>
     <div class="rowposter mt-3 p-2">
@@ -119,4 +106,4 @@
 
     </div>
 
-  </div>
+  </div> -->

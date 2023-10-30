@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { FormControl,FormGroup } from '@angular/forms';
+import { FormControl,FormGroup, Validators } from '@angular/forms';
 import { MovieApiServiceService } from 'src/app/service/movie-api-service.service';
 
 @Component({
@@ -14,11 +14,11 @@ export class SearchComponent {
   ngOnInit():void{}
   searchFinding:any=[]
   searchForm=new FormGroup({
-    'movieName':new FormControl()
+    'movieName':new FormControl('',[Validators.required]) as FormControl
   });
 
   submitForm(){
-    console.log(this.searchForm.value);
+    // console.log(this.searchForm.value);
     this.service.searchResults(this.searchForm.value).subscribe(res=>{
       console.log(res)
       this.searchFinding=res.results

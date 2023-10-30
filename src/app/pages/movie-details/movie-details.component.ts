@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { VideoData } from 'src/app/movies.interface';
+import { CastEntity, MovieData, VideoData, vidData } from 'src/app/movies.interface';
 import { MovieApiServiceService } from 'src/app/service/movie-api-service.service';
 
 @Component({
@@ -10,9 +10,9 @@ import { MovieApiServiceService } from 'src/app/service/movie-api-service.servic
 })
 export class MovieDetailsComponent {
   constructor(private service:MovieApiServiceService,private router: ActivatedRoute){}
-MovieDetails:any;
-movieVideo:any;
-cast:any
+MovieDetails!:MovieData;
+movieVideo!:vidData;
+cast!:CastEntity[]
   ngOnInit():void{
     let id=this.router.snapshot.paramMap.get('id') as string
     console.log(id)
@@ -23,17 +23,17 @@ cast:any
 
 getMovie(id:string){
   this.service.getMovieDetails(id).subscribe(res=>{
-    console.log(res)
+    // console.log(res)
     this.MovieDetails=res
   })
 }
 
 getVideo(id:string){
   this.service.getMovieVideo(id).subscribe((res)=>{
-    // console.log(res,"vid")
+    // console.log(res.results)
     if(res.results){
       res.results.forEach((element:VideoData) => {
-        if(element.type==='Trailer')
+        if(element.type==='Trailer' && element?.key)
         this.movieVideo=element
       });
     }
@@ -44,8 +44,9 @@ getVideo(id:string){
 
 getCast(id:string){
   this.service.getMovieCast(id).subscribe(res=>{
+    if(res.cast)
     this.cast=res.cast
-    // console.log(res,"cast")
+    console.log(res.cast,"cast")
   })
 }
 
